@@ -9,7 +9,10 @@ import com.cg.utils.InputValidator;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * This class handles the user interface for the Todo app.
+ * It shows a menu, takes user input, and calls the service to do actions like create, view, edit, or delete todos.
+ */
 public class UserInterface {
 
     private final Scanner scanner = new Scanner(System.in);
@@ -19,6 +22,9 @@ public class UserInterface {
         this.service = service;
     }
 
+    /**
+     * Starts the app and keeps showing the menu until the user chooses to exit.
+     */
     public void start() {
         while (true) {
             printMenu();
@@ -41,6 +47,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Prints the main menu options on the screen.
+     */
     private void printMenu() {
         System.out.println("\n--- TODO APPLICATION ---");
         System.out.println("1. Create Todo");
@@ -55,6 +64,9 @@ public class UserInterface {
         System.out.print("Enter your choice: ");
     }
 
+    /**
+     * Lets the user create a new todo by entering title, description, priority, and due date.
+     */
     private void createTodo() {
         System.out.println("\n--- Create Todo ---");
         String title = InputValidator.getNonEmptyString(scanner, "Title: ");
@@ -67,12 +79,18 @@ public class UserInterface {
         System.out.println("Todo created successfully!");
     }
 
+    /**
+     * Shows all the todos saved in the system.
+     */
     private void viewAllTodos() {
         System.out.println("\n--- All Todos ---");
         List<Todo> todos = service.getAllTodos();
         printTodos(todos);
     }
 
+    /**
+     * Lets the user toggle (change) the completion status of a todo by ID.
+     */
     private void markTodoComplete() {
         int id = InputValidator.getPositiveInt(scanner, "Enter Todo ID to toggle completion: ");
         if (service.toggleCompletion(id)) {
@@ -82,6 +100,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Lets the user edit an existing todo by giving its ID and new details.
+     */
     private void editTodo() {
         int id = InputValidator.getPositiveInt(scanner, "Enter ID to edit: ");
         Todo existing = service.getTodoById(id);
@@ -103,6 +124,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Deletes a todo by its ID after asking the user for confirmation.
+     */
     private void deleteTodo() {
         int id = InputValidator.getPositiveInt(scanner, "Enter ID to delete: ");
         System.out.print("Are you sure? (y/n): ");
@@ -115,12 +139,18 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Lets the user search todos by typing a keyword.
+     */
     private void searchTodos() {
         String keyword = InputValidator.getNonEmptyString(scanner, "Enter keyword to search: ");
         List<Todo> results = service.searchTodos(keyword);
         printTodos(results);
     }
 
+    /**
+     * Lets the user filter todos by priority, completion status, or due date range.
+     */
     private void filterTodos() {
         System.out.println("\n--- Filter Options ---");
         System.out.println("1. By Priority");
@@ -153,6 +183,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Lets the user sort todos by priority, due date, or creation date.
+     */
     private void sortTodos() {
         System.out.println("\n--- Sort Options ---");
         System.out.println("1. By Priority");
@@ -176,6 +209,10 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Prints the list of todos in a nice format or shows a message if empty.
+     * @param todos List of todos to print
+     */
     private void printTodos(List<Todo> todos) {
         if (todos.isEmpty()) {
             System.out.println("No todos found.");
