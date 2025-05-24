@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TodoServiceTest {
+public class TodoServiceTest {
 
     private TodoService service;
 
