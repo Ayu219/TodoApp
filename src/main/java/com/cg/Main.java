@@ -17,6 +17,5 @@ public class Main {
     public static void main(String[] args) {
         TodoDAOImpl todoDAO = new TodoDAOImpl();
         TodoService todoService = new TodoService(todoDAO);
-        UserInterface ui = new UserInterface(todoService);
     }
 }
