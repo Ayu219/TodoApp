@@ -17,11 +17,12 @@ public class TodoDTO {
     public TodoDTO() {}
 
     /**
-     * Constructor to create a TodoDTO with all details.
-     * @param title The title of the todo
-     * @param description The details about the todo
-     * @param priority The priority level (1-High, 2-Medium, 3-Low)
-     * @param dueDate The due date for the todo
+     * Constructor taking parameters title,description,priority and dueDate
+     * @param title :Title of the todo
+     * @param description: descrption about the todo task
+     * @param priority:priority of each task(1=High,2=Medium,3=Low)
+     * @param dueDate:date by which the task needs to be completed
+     * 
      */
     public TodoDTO(String title, String description, int priority, LocalDate dueDate) {
         this.title = title;

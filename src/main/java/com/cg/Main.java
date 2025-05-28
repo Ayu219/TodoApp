@@ -18,6 +18,5 @@ public class Main {
         TodoDAOImpl todoDAO = new TodoDAOImpl();
         TodoService todoService = new TodoService(todoDAO);
         UserInterface ui = new UserInterface(todoService);
-        ui.start();
     }
 }
